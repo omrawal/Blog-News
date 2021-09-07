@@ -5,7 +5,25 @@ Home
 
 
 {% block content %}
-<h1>This is Home Page</h1>
-<p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ea, odio tempore, quis corrupti voluptatibus illum
-    neque incidunt eius molestias omnis sequi quidem recusandae totam maxime voluptas placeat modi quos nulla.</p>
+<h1>Welcome {{request.user}}</h1>
+<br>
+<a href="upload" class="btn btn-primary">Create New Post</a>
+<br>
+{% for post in posts %}
+<article class="media content-section">
+    <div class="media-body">
+        <div class="article-metadata">
+            <a class="mr-2" href="#">{{ post.author }}</a>
+            <small class="text-muted">{{ post.date_posted|date:"F d, Y" }}</small>
+        </div>
+        <h2><a class="article-title" href="#">{{ post.title }}</a></h2>
+        <p class="article-content">{{ post.content }}</p>
+        <a href="update/{{post.id}}" class="btn btn-warning" id='{{post.id}}'>edit</a>
+        <a href="delete/{{post.id}}" class="btn btn-danger" id='{{post.id}}'>delete</a>
+    </div>
+</article>
+
+{% endfor %}
+
+
 {% endblock %}

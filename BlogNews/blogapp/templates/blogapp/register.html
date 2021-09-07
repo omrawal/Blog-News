@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% block title %}
+Register
+{% endblock %}
+{% block content %}
+
+<form action="{% url 'register' %}" method="post">
+    {% csrf_token %}
+    {% if form.errors %}
+    <p>There are errors in the form</p>
+    {% endif %}
+
+    {{ form }}
+
+    <input type="submit" value="Register">
+</form>
+<small class="text-muted">
+    Already a member? <a class="ml-2" href="{% url 'login' %}">Log In</a>
+</small>
+
+{% endblock content %}

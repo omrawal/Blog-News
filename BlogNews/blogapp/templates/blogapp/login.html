@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% block title %}
+Login
+{% endblock %}
+{% block content %}
+{% if form.errors %}
+<p>There's something wrong with what you entered!</p>
+{% endif %}
+
+{% if next %}
+<p>Access Denied login first!!!</p>
+{% endif %}
+
+<form method="POST" action="{% url 'login' %}">
+    {% csrf_token %}
+
+    <p>Username: {{form.username}}</p>
+    <p>Password: {{form.password}}</p>
+    <p><input type="submit" value="login"></p>
+    <input type="hidden" name="next" value="{{ next }}">
+</form>
+
+<small class="text-muted">
+    Need An Account? <a class="ml-2" href="{% url 'register' %}">Sign Up Now</a>
+</small>
+
+{% endblock content %}
